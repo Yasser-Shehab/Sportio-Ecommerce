@@ -1,0 +1,38 @@
+.Categories{
+  padding: 2rem 2rem;
+  margin: 10rem;
+  background: linear-gradient(180deg, #1576A9 0%, #18668F 100%);
+  border-radius: 20px;
+}
+
+.categoryItem > div{
+  padding:0.5rem 1rem;
+  margin:0 1rem;
+  border-radius: 5px;
+  
+  img{
+    display: flex;
+    justify-content: center;
+    opacity: 80%;  
+  }
+  img:hover{
+    opacity: 100%;
+  }
+}
+.searchInput{
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  border-bottom: 1px solid #FFFFFF;
+  input{
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #FFFFFF;
+    opacity: 80%;
+    outline: none;
+  }
+  ::placeholder{
+    color: #FFFFFF;
+  }
+}

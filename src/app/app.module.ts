@@ -8,6 +8,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { HeaderComponentComponent } from './shared/header-component/header-component.component';
 import { HomeComponent } from './components/home/home.component';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { HomeComponent } from './components/home/home.component';
     PageNotFoundComponent,
     NavBarComponent,
     HeaderComponentComponent,
-    HomeComponent
+    HomeComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,
