@@ -2,7 +2,7 @@
   <div class="col" *ngFor="let product of products">
     <app-card>
       <ng-container cardTitle>
-        {{ product.title }}
+        <a class="btn btn-link" routerLink="/productDetails/{{product.id}}">{{ product.title }}</a>
       </ng-container>
       <ng-container cardPrice>
         {{ product.price | currency }}

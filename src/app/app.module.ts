@@ -12,6 +12,7 @@ import { CardComponent } from './shared/card/card.component';
 import { ProductsComponent } from './components/products/products.component';
 import { BannersComponent } from './components/banners/banners.component';
 import { FooterComponentComponent } from './shared/footer-component/footer-component.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { FooterComponentComponent } from './shared/footer-component/footer-compo
     CardComponent,
     ProductsComponent,
     BannersComponent,
-    FooterComponentComponent
+    FooterComponentComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

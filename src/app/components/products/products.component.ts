@@ -8,34 +8,37 @@ import { Component, OnInit } from '@angular/core';
 export class ProductsComponent implements OnInit {
   products = [
     {
-      title: 'title 1',
-      price: 234,
-    },
-    {
+      id:0,
       title: 'title 2',
       price: 234,
     },
     {
+      id:1,
       title: 'title 3',
       price: 234,
     },
     {
+      id:2,
       title: 'title 4',
       price: 234,
     },
     {
+      id:3,
       title: 'title 5',
       price: 234,
     },
     {
+      id:4,
       title: 'title 6',
       price: 234,
     },
     {
+      id:5,
       title: 'title 7',
       price: 234,
     },
     {
+      id:6,
       title: 'title 8',
       price: 234,
     },
