@@ -3,15 +3,19 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 const routes: Routes = [
-  {path:'',component:HomeComponent},
-  {path:'productDetails/:id',component:ProductDetailsComponent},
-  {path:'**',component:PageNotFoundComponent},
+  { path: 'register', component: RegisterFormComponent },
+  { path: 'login', component: LoginFormComponent },
+  { path: 'productDetails/:id', component: ProductDetailsComponent },
+  { path: '', component: HomeComponent },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

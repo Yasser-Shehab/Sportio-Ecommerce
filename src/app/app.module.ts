@@ -14,6 +14,9 @@ import { BannersComponent } from './components/banners/banners.component';
 import { FooterComponentComponent } from './shared/footer-component/footer-component.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
+import { RegisterFormComponent } from './components/register-form/register-form.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,14 +30,12 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     ProductsComponent,
     BannersComponent,
     FooterComponentComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    RegisterFormComponent,
+    LoginFormComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    RouterModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, RouterModule, ReactiveFormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
