@@ -24,12 +24,7 @@ export class UsersService {
   }
   login(userDetails: ILoginUser): Observable<ILoginUser> {
     const user = this._http
-      .post<ILoginUser>(`${this.URL}/login`, userDetails, {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          responseType: 'text',
-        }),
-      })
+      .post<ILoginUser>(`${this.URL}/login`, userDetails)
       .pipe();
     return user;
   }

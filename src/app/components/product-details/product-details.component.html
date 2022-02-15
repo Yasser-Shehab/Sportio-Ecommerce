@@ -14,8 +14,9 @@
       <button class="btn btn-info text-white">Add To Cart</button>
     </div>
   </div>
-
-  <h2 class="text-center display-5 mt-5">You Might Also Like</h2>
+  <ng-container *ngIf="show">
+  <h2 class="text-center display-5 mt-5" >You Might Also Like</h2>
+  </ng-container>
   <div
     class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 justify-content-center pt-3 g-3"
   >

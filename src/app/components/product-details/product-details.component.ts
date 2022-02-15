@@ -10,31 +10,33 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class ProductDetailsComponent implements OnInit {
   product: any = {};
-  category: any = '';
   products: any = [];
-
+  productId: string = '';
+  show:boolean = false;
+  
   constructor(
     private router: ActivatedRoute,
     private _productsService: ProductsService,
     private _categoriesService: CategoriesService
   ) {}
-
+  
   ngOnInit(): void {
     this.router.paramMap.subscribe((value: any) => {
-      this._productsService.getSingleProduct(value.params.id).subscribe((p) => {
-        this.product = p;
-        console.log(p.categoryId);
-
-        this.category = p.categoryId;
+      this.productId = value.params.id
+    });
+    this._productsService.getSingleProduct(this.productId).subscribe((p) => {
+      this.product = p;
+      // ---- Products from cayegory ---- //
+      this._categoriesService
+      .getCategoryProducts(p.categoryId)
+      .subscribe((products) => {
+        this.products = products;
+        console.log(products)
+        if(products){
+          this.show = true;
+        }
       });
     });
     window.scroll(0, 0);
-    // ---- Products from cayegory ----
-
-    this._categoriesService
-      .getCategoryProducts('6206bf91f00b0df5743fa73c')
-      .subscribe((products) => {
-        this.products = products;
-      });
   }
 }
