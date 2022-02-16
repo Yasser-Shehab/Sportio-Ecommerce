@@ -5,8 +5,21 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { UsersComponent } from './components/users/users.component';
+import { ProductsTableComponent } from './components/products-table/products-table.component';
+import { OrdersTableComponent } from './components/orders-table/orders-table.component';
 
 const routes: Routes = [
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    children: [
+      { path: '', component: UsersComponent },
+      { path: 'products', component: ProductsTableComponent },
+      { path: 'orders', component: OrdersTableComponent },
+    ],
+  },
   { path: 'register', component: RegisterFormComponent },
   { path: 'login', component: LoginFormComponent },
   { path: 'productDetails/:id', component: ProductDetailsComponent },

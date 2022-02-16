@@ -1,7 +1,7 @@
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -18,6 +18,10 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { UsersComponent } from './components/users/users.component';
+import { ProductsTableComponent } from './components/products-table/products-table.component';
+import { OrdersTableComponent } from './components/orders-table/orders-table.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProductDetailsComponent,
     RegisterFormComponent,
     LoginFormComponent,
+    DashboardComponent,
+    UsersComponent,
+    ProductsTableComponent,
+    OrdersTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +49,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
+    // HttpClientXsrfModule.withOptions({
+    //   cookieName: 'My-Xsrf-Cookie',
+    //   headerName: 'My-Xsrf-Header',
+    // }),
   ],
   providers: [],
   bootstrap: [AppComponent],

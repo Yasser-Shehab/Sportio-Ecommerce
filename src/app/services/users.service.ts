@@ -28,4 +28,13 @@ export class UsersService {
       .pipe();
     return user;
   }
+
+  getAllUsers(): Observable<IUser[]> {
+    const users = this._http.get<IUser[]>(this.URL).pipe();
+    return users;
+  }
+  getSingleUser(userID: string): Observable<IUser> {
+    const user = this._http.get<IUser>(`${this.URL}/${userID}`).pipe();
+    return user;
+  }
 }
