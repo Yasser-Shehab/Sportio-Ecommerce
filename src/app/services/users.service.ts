@@ -18,23 +18,27 @@ export class UsersService {
 
   register(userDetails: IUser): Observable<IUser> {
     const user = this._http
-      .post<IUser>(`${this.URL}/register`, userDetails)
+      .post<IUser>(`${this.URL}/register`, userDetails, {
+        withCredentials: true,
+      })
       .pipe();
     return user;
   }
   login(userDetails: ILoginUser): Observable<ILoginUser> {
     const user = this._http
-      .post<ILoginUser>(`${this.URL}/login`, userDetails)
+      .post<ILoginUser>(`${this.URL}/login`, userDetails, {
+        withCredentials: true,
+      })
       .pipe();
     return user;
   }
 
   getAllUsers(): Observable<IUser[]> {
-    const users = this._http.get<IUser[]>(this.URL).pipe();
+    const users = this._http
+      .get<IUser[]>(this.URL, {
+        withCredentials: true,
+      })
+      .pipe();
     return users;
-  }
-  getSingleUser(userID: string): Observable<IUser> {
-    const user = this._http.get<IUser>(`${this.URL}/${userID}`).pipe();
-    return user;
   }
 }

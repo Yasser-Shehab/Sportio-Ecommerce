@@ -11,7 +11,9 @@ export class OrdersService {
   constructor(private _http: HttpClient) {}
 
   getAllOrders(): Observable<any> {
-    const orders = this._http.get<any>(this.URL).pipe();
+    const orders = this._http
+      .get<any>(this.URL, { withCredentials: true })
+      .pipe();
     return orders;
   }
 }
