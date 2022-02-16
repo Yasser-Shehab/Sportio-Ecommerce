@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IProduct } from 'src/app/interfaces/IProduct';
+import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -10,39 +10,31 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class ProductDetailsComponent implements OnInit {
   product: any = {};
-  products = [
-    {
-      id: 1,
-      title: 'title 2',
-      price: 234,
-    },
-    {
-      id: 2,
-      title: 'title 3',
-      price: 234,
-    },
-    {
-      id: 3,
-      title: 'title 4',
-      price: 234,
-    },
-    {
-      id: 4,
-      title: 'title 4',
-      price: 234,
-    },
-  ];
+  category: any = '';
+  products: any = [];
 
   constructor(
     private router: ActivatedRoute,
-    private _productsService: ProductsService
+    private _productsService: ProductsService,
+    private _categoriesService: CategoriesService
   ) {}
 
   ngOnInit(): void {
     this.router.paramMap.subscribe((value: any) => {
       this._productsService.getSingleProduct(value.params.id).subscribe((p) => {
         this.product = p;
+        console.log(p.categoryId);
+
+        this.category = p.categoryId;
       });
     });
+    window.scroll(0, 0);
+    // ---- Products from cayegory ----
+
+    this._categoriesService
+      .getCategoryProducts('6206bf91f00b0df5743fa73c')
+      .subscribe((products) => {
+        this.products = products;
+      });
   }
 }

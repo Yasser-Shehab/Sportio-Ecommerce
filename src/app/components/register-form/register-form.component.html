@@ -3,7 +3,7 @@
     <div class="card shadow py-5 px-2 p-sm-5">
       <!-- [style.background]="'url(assets/mainImgs/form-background.jpg)'" -->
       <h3 class="display-3">Register Form</h3>
-      <form [formGroup]="registerForm">
+      <form [formGroup]="registerForm" (submit)="onSubmit()">
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
           <input
