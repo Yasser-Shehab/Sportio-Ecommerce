@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { tap, pluck } from 'rxjs/operators';
 import { IUser } from '../interfaces/IUser';
+import jwt_decode from 'jwt-decode';
 
 interface ILoginUser {
   email: string;
@@ -12,6 +14,8 @@ interface ILoginUser {
   providedIn: 'root',
 })
 export class UsersService {
+  loggedIn = new BehaviorSubject<boolean>(false);
+  isAdmin = new BehaviorSubject<boolean>(false);
   URL = 'https://sportio-backend.herokuapp.com/users';
 
   constructor(private _http: HttpClient) {}
@@ -29,8 +33,28 @@ export class UsersService {
       .post<ILoginUser>(`${this.URL}/login`, userDetails, {
         withCredentials: true,
       })
-      .pipe();
+      .pipe(
+        tap(() => {
+          this.loggedIn.next(true);
+        }),
+        pluck('token'),
+        tap((token: any) => {
+          const decoded: any = jwt_decode(token);
+          console.log(decoded);
+
+          if (decoded.role === 'admin') {
+            this.isAdmin.next(true);
+          }
+        })
+      );
+
     return user;
+  }
+
+  logout(): Observable<string> {
+    return this._http.get<string>(`${this.URL}/logout`, {
+      withCredentials: true,
+    });
   }
 
   getAllUsers(): Observable<IUser[]> {

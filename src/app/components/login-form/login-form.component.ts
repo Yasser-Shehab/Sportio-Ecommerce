@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BehaviorSubject, pluck } from 'rxjs';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./login-form.component.scss'],
 })
 export class LoginFormComponent implements OnInit {
+  // isAdmin = new BehaviorSubject<boolean>(false);
   loginForm = this.fb.group(
     {
       email: ['', [Validators.required, Validators.email]],
@@ -28,8 +30,13 @@ export class LoginFormComponent implements OnInit {
   onSubmit() {
     console.log(this.loginForm.value);
 
-    this._usersService.login(this.loginForm.value).subscribe((res) => {
-      console.log(res);
+    this._usersService.login(this.loginForm.value).subscribe((token: any) => {
+      localStorage.setItem('token', token);
+      // const decoded: any = jwt_decode(token);
+
+      // if (decoded.role === 'admin') {
+      //   this.isAdmin.next(true);
+      // }
     });
     this.router.navigate(['/']);
   }

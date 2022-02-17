@@ -22,6 +22,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UsersComponent } from './components/users/users.component';
 import { ProductsTableComponent } from './components/products-table/products-table.component';
 import { OrdersTableComponent } from './components/orders-table/orders-table.component';
+import { AuthProvider } from './intrceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { OrdersTableComponent } from './components/orders-table/orders-table.com
     //   headerName: 'My-Xsrf-Header',
     // }),
   ],
-  providers: [],
+  providers: [AuthProvider],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
