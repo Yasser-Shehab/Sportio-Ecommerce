@@ -13,7 +13,9 @@ export class CategoriesService {
 
   getCategoryProducts(categoryID: string): Observable<IProduct[]> {
     const products = this._http
-      .get<IProduct[]>(`${this.URL}/${categoryID}`)
+      .get<IProduct[]>(`${this.URL}/${categoryID}`, {
+        withCredentials: true,
+      })
       .pipe();
     return products;
   }

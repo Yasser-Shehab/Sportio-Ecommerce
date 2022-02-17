@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import jwt_decode from 'jwt-decode';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -15,20 +15,19 @@ export class NavBarComponent implements OnInit {
   constructor(private _usersServices: UsersService, private router: Router) {}
 
   ngOnInit(): void {
-    this._usersServices.loggedIn.subscribe((val) => {
-      console.log(val);
-      this.loggedIn = val;
-    });
-    this._usersServices.isAdmin.subscribe((val) => {
-      console.log(val);
-      this.isAdmin = val;
-    });
+    const token = localStorage.getItem('token');
+    const decoded: { role: string } = jwt_decode(token!);
+    if (decoded.role === 'admin') {
+      this.loggedIn = true;
+      this.isAdmin = true;
+    }
   }
 
   logout() {
     this._usersServices.logout().subscribe(() => {
       localStorage.removeItem('token');
       this.loggedIn = false;
+      this.isAdmin = false;
       this.router.navigate(['/']);
     });
   }

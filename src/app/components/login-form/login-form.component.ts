@@ -32,11 +32,6 @@ export class LoginFormComponent implements OnInit {
 
     this._usersService.login(this.loginForm.value).subscribe((token: any) => {
       localStorage.setItem('token', token);
-      // const decoded: any = jwt_decode(token);
-
-      // if (decoded.role === 'admin') {
-      //   this.isAdmin.next(true);
-      // }
     });
     this.router.navigate(['/']);
   }

@@ -11,11 +11,19 @@ export class ProductsService {
   constructor(private _http: HttpClient) {}
 
   getAllProducts(): Observable<IProduct[]> {
-    const products = this._http.get<IProduct[]>(this.URL).pipe();
+    const products = this._http
+      .get<IProduct[]>(this.URL, {
+        withCredentials: true,
+      })
+      .pipe();
     return products;
   }
   getSingleProduct(productID: string): Observable<IProduct> {
-    const product = this._http.get<IProduct>(`${this.URL}/${productID}`).pipe();
+    const product = this._http
+      .get<IProduct>(`${this.URL}/${productID}`, {
+        withCredentials: true,
+      })
+      .pipe();
     return product;
   }
 }
