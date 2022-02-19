@@ -20,6 +20,8 @@ export class NavBarComponent implements OnInit {
     if (decoded.role === 'admin') {
       this.loggedIn = true;
       this.isAdmin = true;
+    } else {
+      this.loggedIn = true;
     }
   }
 

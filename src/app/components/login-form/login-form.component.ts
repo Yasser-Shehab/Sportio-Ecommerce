@@ -28,11 +28,10 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log(this.loginForm.value);
-
-    this._usersService.login(this.loginForm.value).subscribe((token: any) => {
-      localStorage.setItem('token', token);
+    this._usersService.login(this.loginForm.value).subscribe((result: any) => {
+      localStorage.setItem('token', result.token);
     });
+
     this.router.navigate(['/']);
   }
 
