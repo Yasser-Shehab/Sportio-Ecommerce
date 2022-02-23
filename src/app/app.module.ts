@@ -24,6 +24,7 @@ import { ProductsTableComponent } from './components/products-table/products-tab
 import { OrdersTableComponent } from './components/orders-table/orders-table.component';
 import { AuthProvider } from './intrceptors/auth.interceptor';
 import { ProductFormComponent } from './components/product-form/product-form.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { ProductFormComponent } from './components/product-form/product-form.com
     ProductsTableComponent,
     OrdersTableComponent,
     ProductFormComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

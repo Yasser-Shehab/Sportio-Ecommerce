@@ -9,6 +9,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UsersComponent } from './components/users/users.component';
 import { ProductsTableComponent } from './components/products-table/products-table.component';
 import { OrdersTableComponent } from './components/orders-table/orders-table.component';
+import { CartComponent } from './components/cart/cart.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
   },
   { path: 'register', component: RegisterFormComponent },
   { path: 'login', component: LoginFormComponent },
+  { path: 'cart', component: CartComponent },
   { path: 'productDetails/:id', component: ProductDetailsComponent },
   { path: '', component: HomeComponent },
   { path: '**', component: PageNotFoundComponent },

@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row my-5">
+    <ng-container *ngIf="!checked">
+      <div *ngFor="let product of productsInCart" class="col-12 col-md-8">
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img [src]="product.image" class="img-fluid rounded-start" />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ product.title }}</h5>
+                <p class="card-text">
+                  {{ product.price }}
+                </p>
+                <p class="card-text">
+                  <small class="text-muted">Last updated 3 mins ago</small>
+                </p>
+                <div class="row">
+                  <div class="col-4">
+                    <button
+                      (click)="decrease(product._id)"
+                      class="btn btn-primary"
+                    >
+                      -
+                    </button>
+                  </div>
+                  <div class="col-4">
+                    {{ getQTY(product._id) }}
+                  </div>
+                  <div class="col-4">
+                    <button
+                      (click)="increase(product._id)"
+                      class="btn btn-primary"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <!--  - - - - - - - - - - order summary - - - - - - -->
+    <div class="col-12 col-md-4">
+      <div class="d-block">
+        <button (click)="checkOut()" class="btn btn-outline-dark">
+          Check out
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
