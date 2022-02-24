@@ -1,19 +1,34 @@
 <div class="container mt-3">
   <div class="Categories">
     <div class="row row-cols pt-5 justify-content-center categoryItem">
-      <div class="col-6 pb-5 pb-sm-3 col-sm-3 col-md-2 text-center">
+      <div
+        (click)="filterByCategory(categories[4]._id)"
+        class="col-6 pb-5 pb-sm-3 col-sm-3 col-md-2 text-center"
+      >
         <img src="assets/mainImgs/categoryIcons/cardio.svg" />
       </div>
-      <div class="col-6 pb-5 pb-sm-3 col-sm-3 col-md-2 text-center">
+      <div
+        (click)="filterByCategory(categories[3]._id)"
+        class="col-6 pb-5 pb-sm-3 col-sm-3 col-md-2 text-center"
+      >
         <img src="assets/mainImgs/categoryIcons/strength.svg" />
       </div>
-      <div class="col-6 pb-5 pb-sm-3 col-sm-3 col-md-2 text-center">
+      <div
+        (click)="filterByCategory(categories[2]._id)"
+        class="col-6 pb-5 pb-sm-3 col-sm-3 col-md-2 text-center"
+      >
         <img src="assets/mainImgs/categoryIcons/apparel.svg" />
       </div>
-      <div class="col-6 pb-5 pb-sm-3 col-sm-3 col-md-2 text-center">
+      <div
+        (click)="filterByCategory(categories[0]._id)"
+        class="col-6 pb-5 pb-sm-3 col-sm-3 col-md-2 text-center"
+      >
         <img src="assets/mainImgs/categoryIcons/bikes.svg" />
       </div>
-      <div class="col-6 pb-5 pb-sm-3 col-sm-3 col-md-2 text-center">
+      <div
+        (click)="filterByCategory(categories[1]._id)"
+        class="col-6 pb-5 pb-sm-3 col-sm-3 col-md-2 text-center"
+      >
         <img src="assets/mainImgs/categoryIcons/footwear.svg" />
       </div>
     </div>

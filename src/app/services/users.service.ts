@@ -13,11 +13,27 @@ interface ILoginUser {
   providedIn: 'root',
 })
 export class UsersService {
-  loggedIn = new BehaviorSubject<boolean>(false);
-  isAdmin = new BehaviorSubject<boolean>(false);
+  private loggedIn = new BehaviorSubject<boolean>(false);
+  private isAdmin = new BehaviorSubject<boolean>(false);
 
-  loggedIn$ = this.loggedIn.asObservable();
-  isAdmin$ = this.isAdmin.asObservable();
+  private loggedIn$ = this.loggedIn.asObservable();
+  private isAdmin$ = this.isAdmin.asObservable();
+
+  getLoggedIn(): Observable<boolean> {
+    return this.loggedIn$;
+  }
+
+  setLoggedIn(latestValue: boolean) {
+    return this.loggedIn.next(latestValue);
+  }
+  getAdmin(): Observable<boolean> {
+    return this.isAdmin$;
+  }
+
+  setAdmin(latestValue: boolean) {
+    return this.isAdmin.next(latestValue);
+  }
+
   URL = 'https://sportio-backend.herokuapp.com/users';
 
   constructor(private _http: HttpClient) {}

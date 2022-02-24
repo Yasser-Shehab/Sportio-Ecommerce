@@ -24,13 +24,13 @@ export class NavBarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     const decoded: { role: string } = jwt_decode(token!);
     if (decoded.role === 'admin') {
-      this.loggedIn = true;
-      this.isAdmin = true;
+      this._usersServices.setLoggedIn(true);
+      this._usersServices.setAdmin(true);
     } else {
-      this.loggedIn = true;
+      this._usersServices.setLoggedIn(true);
     }
 
     // get items in cart
@@ -40,6 +40,20 @@ export class NavBarComponent implements OnInit {
         this.cartLength = res.length;
       });
 
+    // check if it's logged in
+    this.subscription = this._usersServices
+      .getLoggedIn()
+      .subscribe((res: any) => {
+        console.log(res);
+        this.loggedIn = res;
+      });
+
+    // check if it's an admin
+    this.subscription = this._usersServices.getAdmin().subscribe((res: any) => {
+      console.log(res);
+      this.isAdmin = res;
+    });
+
     this.cartLength = JSON.parse(
       localStorage.getItem('cart') as string
     )?.length;
@@ -47,9 +61,9 @@ export class NavBarComponent implements OnInit {
 
   logout() {
     this._usersServices.logout().subscribe(() => {
-      localStorage.removeItem('token');
-      this.loggedIn = false;
-      this.isAdmin = false;
+      sessionStorage.removeItem('token');
+      this._usersServices.setLoggedIn(false);
+      this._usersServices.setAdmin(false);
       this.router.navigate(['/']);
     });
   }

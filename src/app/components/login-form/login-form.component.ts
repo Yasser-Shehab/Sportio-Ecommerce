@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BehaviorSubject, pluck } from 'rxjs';
+import jwt_decode from 'jwt-decode';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -29,7 +29,14 @@ export class LoginFormComponent implements OnInit {
 
   onSubmit() {
     this._usersService.login(this.loginForm.value).subscribe((result: any) => {
-      localStorage.setItem('token', result.token);
+      sessionStorage.setItem('token', result.token);
+      const decoded: { role: string } = jwt_decode(result.token!);
+      if (decoded.role === 'admin') {
+        this._usersService.setLoggedIn(true);
+        this._usersService.setAdmin(true);
+      } else {
+        this._usersService.setLoggedIn(true);
+      }
     });
 
     this.router.navigate(['/']);
