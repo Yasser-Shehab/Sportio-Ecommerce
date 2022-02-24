@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
+import { confirmPasswordValidator } from 'src/app/custom/password.validator';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -11,13 +12,11 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class LoginFormComponent implements OnInit {
   // isAdmin = new BehaviorSubject<boolean>(false);
-  loginForm = this.fb.group(
-    {
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-    }
-    // { validator: confirmPasswordValidator }
-  );
+  wrong: boolean = false;
+  loginForm = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(8)]],
+  });
 
   constructor(
     private fb: FormBuilder,
@@ -27,19 +26,29 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSubmit() {
-    this._usersService.login(this.loginForm.value).subscribe((result: any) => {
-      sessionStorage.setItem('token', result.token);
-      const decoded: { role: string } = jwt_decode(result.token!);
-      if (decoded.role === 'admin') {
-        this._usersService.setLoggedIn(true);
-        this._usersService.setAdmin(true);
-      } else {
-        this._usersService.setLoggedIn(true);
-      }
-    });
+  onSubmit(e: any) {
+    this._usersService.login(this.loginForm.value).subscribe(
+      (result: any) => {
+        console.log(result);
 
-    this.router.navigate(['/']);
+        sessionStorage.setItem('token', result.token);
+        const decoded: { role: string } = jwt_decode(result.token!);
+        if (decoded.role === 'admin') {
+          this._usersService.setLoggedIn(true);
+          this._usersService.setAdmin(true);
+        } else {
+          this._usersService.setLoggedIn(true);
+        }
+        this.router.navigate(['/']);
+      },
+      (err) => {
+        if (err.status == 404) {
+          e.preventDefault();
+          this.wrong = true;
+        }
+        console.log('Error Getting Location: ', err);
+      }
+    );
   }
 
   get email() {

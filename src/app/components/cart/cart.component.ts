@@ -31,7 +31,6 @@ export class CartComponent implements OnInit {
       this.productsInCart = products.data.filter((p: any) => {
         return this.ids.includes(p._id);
       });
-      console.log(this.productsInCart);
     });
   }
 
@@ -41,7 +40,8 @@ export class CartComponent implements OnInit {
     });
     p!.qty++;
     localStorage.setItem('cart', JSON.stringify([...this.cartItems]));
-    console.log(p!.qty);
+    this.getSubtotal();
+    this.getTotal();
   }
 
   decrease(productId: string) {
@@ -50,7 +50,8 @@ export class CartComponent implements OnInit {
     });
     p!.qty <= 1 ? p!.qty : p!.qty--;
     localStorage.setItem('cart', JSON.stringify([...this.cartItems]));
-    console.log(p!.qty);
+    this.getSubtotal();
+    this.getTotal();
   }
   getQTY(productId: string) {
     const item = this.cartItems.find((i) => {
@@ -58,12 +59,25 @@ export class CartComponent implements OnInit {
     });
     return item!.qty;
   }
+  getSubtotal() {
+    let subtotal: number = 0;
+    for (let p of this.productsInCart) {
+      let price = p.price * this.getQTY(p._id);
+      subtotal += price;
+    }
+    return subtotal;
+  }
+  // Must Fix Price Later !!!!!!!!
+  getTotal() {
+    let withShipping = this.getSubtotal() + 50;
+    return withShipping * 1.14;
+  }
 
   //  - - - - - check out ( make order ) - - - - - - - -
   checkOut() {
     let order = {
-      tax: 0,
-      shippingFee: 0,
+      tax: 14,
+      shippingFee: 50,
       cartItems: this.cartItems,
     };
     this._orderServices.addOrder(order).subscribe((res) => {

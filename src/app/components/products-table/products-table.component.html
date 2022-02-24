@@ -1,4 +1,4 @@
-<div class="vh-100 justify-content-center">
+<div class="justify-content-center">
   <ng-container *ngIf="openForm">
     <app-product-form [product]="product"></app-product-form>
   </ng-container>
@@ -32,7 +32,6 @@
         <td>{{ product.title }}</td>
         <td>{{ product.price }}</td>
         <td>{{ product.inStock }}</td>
-
         <td>
           <div class="btn-group">
             <button

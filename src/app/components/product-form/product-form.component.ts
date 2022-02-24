@@ -80,12 +80,25 @@ export class ProductFormComponent implements OnInit {
 
     this.showForm = false;
   }
-  updateProduct(productID: string) {
-    this._productsService
-      .updateProduct(productID, this.productForm.value)
-      .subscribe((res) => {
-        console.log(res);
-      });
+  updateProduct(e: any, productID: string) {
+    const file = e.target[0].files[0];
+    this.productForm.patchValue({ image: file });
+    console.log(this.productForm);
+
+    const formData: any = new FormData();
+    formData.append('image', file);
+
+    this._productsService.uploadImage(formData).subscribe((res) => {
+      console.log(res.imagePath);
+
+      this.productForm.get('image')?.setValue(res.imagePath);
+      this._productsService
+        .updateProduct(productID, this.productForm.value)
+        .subscribe((res) => {
+          console.log(res);
+        });
+    });
+    this.showForm = false;
   }
 
   get title() {

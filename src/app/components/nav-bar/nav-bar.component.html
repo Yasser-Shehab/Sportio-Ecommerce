@@ -30,15 +30,7 @@
             >
           </li>
         </ng-container>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            routerLink="/cart"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >Cart [{{ cartLength }}] Items
-          </a>
-        </li>
+
         <li class="nav-item">
           <a
             class="nav-link"
@@ -67,12 +59,30 @@
             >
           </li>
         </ng-container>
-
         <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/cart"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            ><button type="button" class="btn btn-light position-relative">
+              <img src="assets/mainImgs/cart-fill.svg" alt="cart" />
+              <ng-container *ngIf="cartLength > 0"
+                ><span
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                >
+                  {{ cartLength }}
+                </span></ng-container
+              ></button
+            ><!--  [{{ cartLength }}] Items -->
+          </a>
+        </li>
+
+        <!-- <li class="nav-item">
           <a class="nav-link" routerLink="/contact" routerLinkActive="active"
             >Contact us</a
           >
-        </li>
+        </li> -->
       </ul>
     </div>
   </div>

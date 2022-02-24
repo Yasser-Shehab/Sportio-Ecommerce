@@ -3,7 +3,14 @@
     <div class="col col-md-10">
       <div class="card shadow py-3 px-2 p-sm-3">
         <!-- [style.background]="'url(assets/mainImgs/form-background.jpg)'" -->
-        <form [formGroup]="productForm" (submit)="addProduct($event)">
+        <form
+          [formGroup]="productForm"
+          (submit)="
+            product._id != undefined
+              ? updateProduct($event, product._id)
+              : addProduct($event)
+          "
+        >
           <div class="mb-3">
             <label for="formFile" class="form-label">Product image</label>
             <input
