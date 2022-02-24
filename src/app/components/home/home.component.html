@@ -1,6 +1,9 @@
 <app-header-component></app-header-component>
 <div class="container">
-  <app-categories (searchProducts)="searchProducts($event)"></app-categories>
+  <app-categories
+    (searchProducts)="searchProducts($event)"
+    (filterProducts)="filterProducts($event)"
+  ></app-categories>
   <ng-container *ngIf="products.length !== 0">
     <app-products [products]="products"></app-products>
   </ng-container>

@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ICategory } from 'src/app/interfaces/ICategory';
 import { IProduct } from 'src/app/interfaces/IProduct';
+import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -9,12 +11,23 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class CategoriesComponent implements OnInit {
   @Input() products: IProduct[] = [];
+  @Input() categories: ICategory[] = [];
   @Output() searchProducts: EventEmitter<string> = new EventEmitter();
-  constructor() {}
+  @Output() filterProducts: EventEmitter<string> = new EventEmitter();
+  constructor(private _categoriesServices: CategoriesService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // get all categories
+    this._categoriesServices.getAllCategories().subscribe((categories) => {
+      this.categories = categories;
+    });
+  }
   search(e: any) {
     this.searchProducts.emit(e.target.value);
+  }
+
+  filterByCategory(categoryId: string) {
+    this.filterProducts.emit(categoryId);
   }
 
   // /////////

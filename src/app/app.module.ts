@@ -23,6 +23,8 @@ import { UsersComponent } from './components/users/users.component';
 import { ProductsTableComponent } from './components/products-table/products-table.component';
 import { OrdersTableComponent } from './components/orders-table/orders-table.component';
 import { AuthProvider } from './intrceptors/auth.interceptor';
+import { ProductFormComponent } from './components/product-form/product-form.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { AuthProvider } from './intrceptors/auth.interceptor';
     UsersComponent,
     ProductsTableComponent,
     OrdersTableComponent,
+    ProductFormComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

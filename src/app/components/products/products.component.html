@@ -1,7 +1,7 @@
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 pt-3">
   <div class="col" *ngFor="let product of products">
     <div class="card mb-5">
-      <img src="assets/mainImgs/blue_mobile.jpg" class="card-img-top" />
+      <img [src]="product.image" class="card-img-top" />
       <div class="card-body">
         <h5 class="card-title">
           <a routerLink="/productDetails/{{ product._id }}">{{
@@ -13,9 +13,12 @@
         </p>
       </div>
       <div class="card-footer">
-        <a href="#" class="btn btn-primary">
-          <img class="cart-icon" src="assets/mainImgs/categoryIcons/cart.svg" />
-        </a>
+        <button
+          (click)="addToCart($event, product._id)"
+          class="btn btn-info text-white"
+        >
+          Add to cart
+        </button>
       </div>
     </div>
   </div>
