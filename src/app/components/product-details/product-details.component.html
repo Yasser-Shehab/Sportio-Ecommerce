@@ -1,7 +1,7 @@
 <div class="container my-5">
   <div class="row">
     <div class="col-12 col-md-4">
-      <img class="img-thumbnail" src="assets/mainImgs/blue_mobile.jpg" />
+      <img class="img-thumbnail" [src]="product.image" />
     </div>
     <div class="col-12 col-md-8">
       <h3 class="display-3">{{ product.title }}</h3>
@@ -23,6 +23,9 @@
   >
     <div class="col" *ngFor="let product of products">
       <app-card>
+        <ng-container cardImg>
+          <img [src]="product.image" class="card-img-top" />
+        </ng-container>
         <ng-container cardTitle>
           <a
             class="btn btn-link"

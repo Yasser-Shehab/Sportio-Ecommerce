@@ -8,18 +8,14 @@
             product.title
           }}</a>
         </h5>
-        <p class="card-title text-info">
-          {{ product.price }}
-        </p>
+        <p class="card-title">Price : {{ product.price }}LE</p>
       </div>
-      <div class="card-footer">
-        <button
-          (click)="addToCart($event, product._id)"
-          class="btn btn-info text-white"
-        >
-          Add to cart
-        </button>
-      </div>
+      <button
+        (click)="addToCart($event, product._id)"
+        class="btn text-white Buy-btn"
+      >
+        Add to cart
+      </button>
     </div>
   </div>
 </div>
